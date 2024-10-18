@@ -30,6 +30,8 @@ public class Main {
             System.out.println(e.getMessage());
         } catch (NullPointerException e){
             System.out.println(e.getMessage());
+        } catch (Exception e) { // Para que el programa corra de todas formas
+            System.out.println(e.getMessage());
         }
         
         try {
@@ -42,6 +44,8 @@ public class Main {
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         } catch (NullPointerException e){
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         
@@ -62,13 +66,15 @@ public class Main {
             System.out.println(e.getMessage());
         } catch (NullPointerException e){
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         
         try {
             System.out.println("3-1");
             Sistema sistema = new Sistema();
             
-            sistema.agregarGastronomia("858927", 15.0, true, "Milanesa con pure", 350.0, 3); //al ser agregacion se podria pasar directamente el objeto
+            sistema.agregarGastronomia("858927", 15.0, true, "Milanesa con pure", 350.0, 3); 
             sistema.agregarHospedaje("489259", 10.0, true, "Habitación triple", 2200.0);
             sistema.agregarGastronomia("182835", 20.0, true, "Gaseosa", 120.0,3);
             sistema.agregarHospedaje("758972", 15.0, false, "Habitación simple", 1000.0);
@@ -87,6 +93,8 @@ public class Main {
         } catch (NullPointerException e){
             System.out.println(e.getMessage());
         } catch (ListaException e){
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

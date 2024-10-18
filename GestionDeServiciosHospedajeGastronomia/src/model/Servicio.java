@@ -26,7 +26,7 @@ public abstract class Servicio {
         return codServicio;
     }
 
-    public void setCodServicio(String codServicio) throws IllegalArgumentException,NullPointerException {
+    public void setCodServicio(String codServicio) throws IllegalArgumentException, NullPointerException {
         if (codServicio == null) {
             throw new NullPointerException("El servicio no puede ser nulo");
         }

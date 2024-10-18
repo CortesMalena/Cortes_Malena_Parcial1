@@ -35,14 +35,13 @@ El sistema ofrece las siguientes funcionalidades:
 
 ### 3. Validaciones
 
-- Manejo de excepciones para situaciones como códigos de servicio inválidos o duplicados, y atributos que no cumplen con
-  las reglas del negocio.
+- Manejo de excepciones para situaciones como códigos de servicio inválidos o duplicados, parametros mal proporcionados y atributos que no cumplen con las reglas del negocio. Aquellas excepciones que se utilizan son IllegalArgumentException, NullPointerException, ListaException y Exception (En caso de haber un error no captado por las excepciones especificas anteriores).
 
+- Ademas de un modulo llamado verificarSiExiste dentro de Sistema que tira la excepcion "ListaException" en caso de haber repetido un servicio dentro de la lista.
 
 ### 4. Cálculo de Precio Final
 
-- Método para calcular el precio final del servicio, teniendo en cuenta promociones y descuentos según el día y el tipo
-  de servicio.
+- Método para calcular el precio final del servicio, teniendo en cuenta promociones y descuentos según el día y el tipo de servicio. Tira NullPointerException en caso de pasar mal el parametro del dia.
 
 ## 📦 Estructura del Proyecto
 
@@ -70,7 +69,7 @@ El proyecto está compuesto por las siguientes clases y subclases:
 - **Atributos Específicos**:
     - `gastronomia`: Tipo de servicio gastronómico (ej. desayuno, almuerzo). (Con validacion para nulos)
     - `precio`: Precio del servicio gastronómico. (con validacion para negativos)
-    - `diaSemDesc`: Día de la semana en que se aplica el descuento. (Verifica que efectivamente sea un dia de semana (del 1 al 7))
+    - `diaSemDesc`: Día de la semana en que se aplica el descuento. (Verifica que efectivamente sea un dia de semana, que sea un int del 1 al 7)
 - **Métodos**:
     - `calcularPrecioFinal(LocalDate dia)`: Aplica el porcentaje de descuento si el día corresponde al día de descuento y si está en promoción. Valida que el dia no sea null
 
@@ -81,13 +80,15 @@ El proyecto está compuesto por las siguientes clases y subclases:
     - `lstServicioEnPromocion`: Lista de servicios disponibles (hospedaje y gastronomía) y en promocion.
     - `lstServicioEnPromocionDia`: Lista de servicios disponibles (hospedaje y gastronomía), en promocion y segun el dia que apliquen descuentos.
 - **Métodos**:
-    - `traerServicio(String codServicio)`: Retorna un servicio específico según su código.
+    - `traerServicio(String codServicio)`: Retorna un servicio específico según su código sino retorna null.
     - `traerServicio(boolean enPromocion)`: Retorna una lista de servicios que están en promoción.
     - `traerServicio(boolean enPromocion, LocalDate dia)`: Retorna una lista de servicios en promoción y que apliquen descuentos según la fecha.
     `agregarGastronomia(String codServicio, double porcentajeDescuento, boolean enPromocion, String gastronomia, double precio, int diaSemDesc)`:
-    Agrega un servicio de gastronomía al sistema.
+    Agrega un servicio de gastronomía al sistema, hace uso de verificarSiExiste para la validacion sobre repetitivos, y salta la respectiva excepcion de IllegalArgumentException en caso de instanciar mal el objeto.
+    - `agregarHospedaje(String codServicio, double porcentajeDescuento, boolean enPromocion, String hospedaje, double precioPorNoche)`:
+    Agrega un servicio de hospedaje al sistema, hace uso de verificarSiExiste para la validacion sobre repetitivos, y salta la respectiva excepcion de IllegalArgumentException en caso de instanciar mal el objeto.
     -
-    `agregarHospedaje(String codServicio, double porcentajeDescuento, boolean enPromocion, String hospedaje, double precioPorNoche)`:
-    Agrega un servicio de hospedaje al sistema.
-    -
-    - `verificarSiExiste(String codServicio)`: verifica si el objeto ya existe en la lista de sistemas
+    - `verificarSiExiste(String codServicio)`: verifica si el objeto ya existe en la lista de servicios de sistemas. De lo contrario tira una excepcion llamada ListaException.
+
+### 5. **ListaException** (Subclase de Exception)
+    - `Constructor: ListaException`(String message).

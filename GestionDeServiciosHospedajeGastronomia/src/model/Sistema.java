@@ -70,7 +70,11 @@ public class Sistema {
         return lstServicioEnPromocion;
     }
     
-    public List<Servicio> traerServicio (boolean enPromocion, LocalDate dia) {
+    public List<Servicio> traerServicio (boolean enPromocion, LocalDate dia) throws NullPointerException {
+        
+        if (dia == null) {
+            throw new NullPointerException("El dia no puede ser nulo");
+        }
         
         for (Servicio servicioABuscar : lstServicio) {
             if (servicioABuscar.isEnPromocion() == enPromocion) {
