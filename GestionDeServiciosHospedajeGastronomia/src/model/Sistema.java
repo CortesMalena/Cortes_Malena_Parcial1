@@ -49,6 +49,12 @@ public class Sistema {
     }
     
     public Servicio traerServicio (String codServicio) {
+         /**
+        * buscar un servicio y traerlo
+        *
+        * @param codServicio string con el codigo del servicio
+        * @return Servicio/null el servicio a buscar o null
+        */
         Servicio servicioATraer = null;
         for (Servicio servicio : lstServicio) {
             if (servicio.getCodServicio().equals(codServicio)) {
@@ -60,7 +66,12 @@ public class Sistema {
     }
     
     public List<Servicio> traerServicio (boolean enPromocion) {
-        
+          /**
+        * buscar un servicios y traerlos en una  lista
+        *
+        * @param enPromocion destado del servicio a buscar
+        * @return lstServicioEnPromocion lista con los servicios segun promocion
+        */
         for (Servicio servicio : lstServicio) {
             if (servicio.isEnPromocion() == enPromocion) {
                 lstServicioEnPromocion.add(servicio);
@@ -71,7 +82,14 @@ public class Sistema {
     }
     
     public List<Servicio> traerServicio (boolean enPromocion, LocalDate dia) throws NullPointerException {
-        
+            /**
+        * buscar un servicios y traerlos en una  lista
+        *
+        * @param enPromocion destado del servicio a buscar
+        * @param dia dia deseado a buscar
+        * @return lstServicioEnPromocionDia lista con los servicios segun promocion y segun dia
+        *  @throws NullPointerException en caso de pasar el dia nulo .
+        */
         if (dia == null) {
             throw new NullPointerException("El dia no puede ser nulo");
         }
@@ -87,7 +105,18 @@ public class Sistema {
     }
     
     public boolean agregarGastronomia(String codServicio, double porcentajeDescuento, boolean enPromocion, String gastronomia, double precio, int diaSemDesc) throws ListaException, IllegalArgumentException{
-        
+          /**
+        * agregarGastronomia
+        *
+        * @param String codServicio
+        * @param double porcentajeDescuento
+        * @param boolean enPromocion
+        * @param String gastronomia
+        * @param double precio
+        *  @param int diaSemDesc
+        * @return true en caso de que pueda ralizarse
+        * @throws ListaException en caso de haber repetidos, IllegalArgumentException en caso de insttanciar mal
+        */
         verificarSiExiste(codServicio);
         Servicio nuevoServicio = new Gastronomia(codServicio, porcentajeDescuento, enPromocion, gastronomia, precio, diaSemDesc);
            
@@ -98,7 +127,17 @@ public class Sistema {
     }
     
     public boolean agregarHospedaje(String codServicio, double porcentajeDescuento, boolean enPromocion, String hospedaje, double precioPorNoche) throws ListaException, IllegalArgumentException{
-        
+          /**
+        * agregarGastronomia
+        *
+        * @param String codServicio
+        * @param double porcentajeDescuento
+        * @param boolean enPromocion
+        * @param String hospedaje
+        * @param double precioPorNoche
+        * @return true en caso de que pueda ralizarse
+        * @throws ListaException en caso de haber repetidos, IllegalArgumentException en caso de insttanciar mal
+        */
         verificarSiExiste(codServicio);
         Servicio nuevoServicio = new Hospedaje(codServicio, porcentajeDescuento, enPromocion, hospedaje, precioPorNoche);
            
@@ -109,6 +148,13 @@ public class Sistema {
     }
     
     public void verificarSiExiste(String codServicio) throws ListaException{
+          /**
+        * verificar Si Existe en la lista
+        *
+        * @param String codServicio
+        * @return void
+        * @throws ListaException en caso de haber repetidos .
+        */
         Servicio existe = traerServicio(codServicio);
         
         if (existe != null) {

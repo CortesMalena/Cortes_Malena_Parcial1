@@ -11,6 +11,11 @@ package model;
 public class ListaException extends Exception {
 
     public ListaException(String message) {
+         /**
+        * Excepcion para listas
+        *
+        * @param String mensaje de la excepcion
+        */
         super(message);
     }
     

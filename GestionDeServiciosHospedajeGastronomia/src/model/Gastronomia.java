@@ -72,11 +72,19 @@ public class Gastronomia extends Servicio {
     
     @Override
     public double calcularPrecioFinal(LocalDate dia) throws NullPointerException {
-        int diaEnNumero = dia.getDayOfWeek().getValue();
-        
+        /**
+        * calcula el precio final
+        *
+        * @param LocalDate dia al realizar la compra
+        * @return doubleprecio
+        * @throws NullPointerException en caso de pasar un dia nulo .
+        */
         if (dia == null) {
             throw new NullPointerException("El dia no puede ser nulo");
         }
+        
+        int diaEnNumero = dia.getDayOfWeek().getValue();
+        
         
         if (enPromocion) {
             if (diaEnNumero == diaSemDesc) {
